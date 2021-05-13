@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.EnumType.*;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -18,6 +19,9 @@ public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
+
+    @Enumerated(STRING)
+    private MemberAuthority authority;
 
     @NotEmpty
     private String nickname;
@@ -39,4 +43,5 @@ public class Member {
         this.password = password;
         this.email = email;
     }
+
 }
