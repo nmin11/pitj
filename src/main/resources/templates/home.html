@@ -1,18 +1,14 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head th:replace="fragments/header :: header">
-  <title>Hello</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-
-<div th:replace="fragments/navBar :: navBar" />
-	<div class="container">
-		<img class="img-responsive" src="images/logo.png">
-		<img class="img-responsive" src="/images/test.png">
-	</div>
-<div th:replace="fragments/footer :: footer" />
-
-</body>
+  <head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <div th:replace="fragments/navBar :: navBar" />
+    <div class="container">
+      <img src="/images/logo.png" />
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+  </body>
 </html>
