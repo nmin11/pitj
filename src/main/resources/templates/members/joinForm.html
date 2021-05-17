@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+	<title>여행에 퐁당 빠지다</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:replace="fragments/navBar :: navBar" />
+<div class="wrap">
+	
+	<div class="form-wrap">
+		
+		<div class="movingButton-wrap">
+			<div id="movement"></div>
+			<button type="button" class="movingbtn" onclick="loginForm()">LOG IN</button>
+			<button type="button" class="movingbtn" onclick="registerForm()">REGISTER</button>
+		</div>
+		
+		<form id="login" action="/dotlike/login.do" method="post" class="input-group">
+			<input type="text" class="input-field" name="log_id" placeholder="ENTER ID" required>
+			<input type="password" class="input-field" name="log_pw" placeholder="ENTER PASSWORD" required>
+			<button class="submit">Login</button>
+		</form>
+		
+		<form id="register" action="/dotlike/register.do" method="post" class="input-group">
+			<input type="text" class="input-field" name="regi_id" placeholder="ENTER ID" required>
+			<input type="text" class="input-field" name="regi_nick" placeholder="ENTER NICKNAME" required>
+			<input type="password" class="input-field" name="regi_pw" placeholder="ENTER PASSWORD" required>
+			<input type="email" class="input-field" name="regi_email" placeholder="ENTER EMAIL" required>
+			<button class="submit">REGISTER</button>
+		</form>
+	
+	</div>
+
+</div>
+<script src="/js/joinForm.js"></script>
+</body>
+</html>
