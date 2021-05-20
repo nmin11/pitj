@@ -8,13 +8,14 @@ import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fascinating.pitj.entity.MemberAuthority.*;
 import static javax.persistence.EnumType.*;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "member_id")
@@ -32,16 +33,17 @@ public class Member {
     @NotEmpty
     private String email;
 
-    @OneToMany(mappedBy = "member")
-    private List<Theme> themes = new ArrayList<>();
+    private String themes;
 
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 
-    public Member(String nickname, String password, String email) {
+    public Member(String nickname, String password, String email, String themes) {
+        this.authority = GENERAL;
         this.nickname = nickname;
         this.password = password;
         this.email = email;
+        this.themes = themes;
     }
 
 }

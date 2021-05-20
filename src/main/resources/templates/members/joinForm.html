@@ -13,37 +13,30 @@
 			<button type="button" class="movingbtn" onclick="registerForm()">REGISTER</button>
 		</div>
 		
-		<form id="login" action="/dotlike/login.do" method="post" class="input-group">
+		<form id="login" action="/members/login" method="post" class="input-group">
 			<input type="text" class="input-field" name="login_nick" placeholder="닉네임을 입력해주세요" required>
 			<input type="password" class="input-field" name="login_pw" placeholder="비밀번호를 입력해주세요" required>
 			<button class="submit">LOG IN</button>
 		</form>
 		
-		<form id="register" action="/dotlike/register.do" method="post" class="input-group">
-			<input type="text" class="input-field" name="register_nick" placeholder="닉네임을 입력해주세요" required>
-			<input type="password" class="input-field" name="register_pw" placeholder="비밀번호를 입력해주세요" required>
-			<input type="email" class="input-field" name="register_email" placeholder="이메일 주소를 입력해주세요" required>
+		<form id="register" action="/members/new" th:object="${memberForm}" method="post" class="input-group">
+			<input type="text" th:field="*{nickname}" class="input-field" placeholder="닉네임을 입력해주세요" required>
+			<input type="password" th:field="*{password}" class="input-field" placeholder="비밀번호를 입력해주세요" required>
+			<input type="email" th:field="*{email}" class="input-field" placeholder="이메일 주소를 입력해주세요" required>
 			<span><b> ＊선호하는 여행 테마 (최대 2개)</b></span><br>
-			<label><input type="checkbox" name="register_theme"
-			              onclick="count_check(this)"
+			<label><input type="checkbox" th:field="*{themes}" onclick="count_check(this)"
 			              value="romance"> 사랑하는 사람과 떠나는 <span class="romance">낭만 가득 여행</span></label><br>
-			<label><input type="checkbox" name="register_theme"
-			              onclick="count_check(this)"
+			<label><input type="checkbox" th:field="*{themes}" onclick="count_check(this)"
 			              value="activity"> 알차게 즐기는 체험과 배움의 <span class="activity">액티비티 여행</span></label><br>
-			<label><input type="checkbox" name="register_theme"
-			              onclick="count_check(this)"
+			<label><input type="checkbox" th:field="*{themes}" onclick="count_check(this)"
 			              value="landscape"> 자연의 분위기에 압도되는 <span class="landscape">세계 풍경 여행지</span></label><br>
-			<label><input type="checkbox" name="register_theme"
-			              onclick="count_check(this)"
+			<label><input type="checkbox" th:field="*{themes}" onclick="count_check(this)"
 			              value="alone"> 유유히 걸으며 사색에 잠기는 <span class="alone">나홀로 여행</span></label><br>
-			<label><input type="checkbox" name="register_theme"
-			              onclick="count_check(this)"
+			<label><input type="checkbox" th:field="*{themes}" onclick="count_check(this)"
 			              value="trekking"> 산간오지를 탐험하는 이색적인 <span class="trekking">트레킹 여행</span></label><br>
-			<label><input type="checkbox" name="register_theme"
-			              onclick="count_check(this)"
+			<label><input type="checkbox" th:field="*{themes}" onclick="count_check(this)"
 			              value="food"> 입이 심심하면 여행도 아니다! <span class="food">먹거리 여행</span></label><br>
-			<label><input type="checkbox" name="register_theme"
-			              onclick="count_check(this)"
+			<label><input type="checkbox" th:field="*{themes}" onclick="count_check(this)"
 			              value="luxury"> 일생에 한번쯤 꼭 가보고 싶은 <span class="luxury">럭셔리 여행</span></label>
 			<button class="submit">REGISTER</button>
 		</form>
@@ -51,6 +44,6 @@
 	</div>
 
 </div>
-<script src="/js/joinForm.js"></script>
+<script src="/js/joinForm.js" type="text/javascript"></script>
 </body>
 </html>

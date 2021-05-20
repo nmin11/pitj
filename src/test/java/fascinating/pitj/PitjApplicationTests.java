@@ -21,7 +21,7 @@ class PitjApplicationTests {
 
 	@Test
 	void contextLoads() {
-		Member test_member = new Member("로코", "1234", "abc@def.com");
+		Member test_member = new Member("로코", "1234", "abc@def.com", "romance");
 		em.persist(test_member);
 
 		JPAQueryFactory query = new JPAQueryFactory(em);

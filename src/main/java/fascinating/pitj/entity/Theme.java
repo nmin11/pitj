@@ -21,10 +21,6 @@ public class Theme {
     @Column(name = "theme_id")
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
-
     @NotEmpty
     private String theme_name;
 

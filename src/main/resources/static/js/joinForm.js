@@ -15,7 +15,7 @@ function registerForm(){
 }
 
 function count_check(obj){
-    var theme = document.getElementsByName("register_theme");
+    var theme = document.getElementsByName("themes");
     var checkingCount = 0;
     for(var i=0; i<theme.length; i++){
         if(theme[i].checked){checkingCount++;}
