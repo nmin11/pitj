@@ -126,3 +126,12 @@
     font-weight: bold;
     color: #4b0082;
 }
+
+.fieldError {
+    border-color: #ff0000;
+}
+
+.errors {
+    margin-left: 10px;
+    color: #ff0000;
+}

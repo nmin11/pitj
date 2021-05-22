@@ -20,7 +20,9 @@
 		</form>
 		
 		<form id="register" action="/members/new" th:object="${memberForm}" method="post" class="input-group">
-			<input type="text" th:field="*{nickname}" class="input-field" placeholder="닉네임을 입력해주세요" required>
+			<input type="text" th:field="*{nickname}" class="input-field" placeholder="닉네임을 입력해주세요"
+			       th:class="${#fields.hasErrors('nickname')}? 'input-field fieldError' : 'input-field'"required>
+			<p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" class="errors">중복된 닉네임입니다.</p>
 			<input type="password" th:field="*{password}" class="input-field" placeholder="비밀번호를 입력해주세요" required>
 			<input type="email" th:field="*{email}" class="input-field" placeholder="이메일 주소를 입력해주세요" required>
 			<span><b> ＊선호하는 여행 테마 (최대 2개)</b></span><br>

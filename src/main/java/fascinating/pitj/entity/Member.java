@@ -46,4 +46,11 @@ public class Member extends BaseEntity {
         this.themes = themes;
     }
 
+    public Member(String nickname, String password, String email) {
+        this.authority = ADMIN;
+        this.nickname = nickname;
+        this.password = password;
+        this.email = email;
+    }
+
 }
