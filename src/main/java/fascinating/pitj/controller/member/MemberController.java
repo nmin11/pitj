@@ -31,6 +31,7 @@ public class MemberController {
     public String create(@Valid MemberForm form, BindingResult result){
         accountValidator.validate(form, result);
         System.out.println(result.hasErrors());
+        System.out.println(result.getFieldErrorCount());
         if (result.hasErrors()) {
             return "members/joinForm";
         }

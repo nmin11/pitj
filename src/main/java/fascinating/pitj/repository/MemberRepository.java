@@ -3,10 +3,8 @@ package fascinating.pitj.repository;
 import fascinating.pitj.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    List<Member> findByNickname(String nickname);
+    Member findByNickname(String nickname);
 
 }
