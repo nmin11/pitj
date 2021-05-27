@@ -1,14 +1,17 @@
 package fascinating.pitj.entity;
 
+import fascinating.pitj.dto.MemberDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
-import static fascinating.pitj.entity.MemberAuthority.*;
+import static fascinating.pitj.entity.Role.*;
 import static javax.persistence.EnumType.*;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -22,7 +25,7 @@ public class Member extends BaseEntity {
     private Long id;
 
     @Enumerated(STRING)
-    private MemberAuthority authority;
+    private Role authority;
 
     @NotEmpty
     private String nickname;
@@ -38,6 +41,7 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 
+    @Builder
     public Member(String nickname, String password, String email, String themes) {
         this.authority = GENERAL;
         this.nickname = nickname;
@@ -51,6 +55,14 @@ public class Member extends BaseEntity {
         this.nickname = nickname;
         this.password = password;
         this.email = email;
+    }
+
+    public Member(MemberDto memberDto) {
+        this.authority = GENERAL;
+        this.nickname = memberDto.getNickname();
+        this.password = memberDto.getPassword();
+        this.email = memberDto.getEmail();
+        this.themes = memberDto.getThemes();
     }
 
 }

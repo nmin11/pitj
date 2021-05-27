@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
   <div id="menu" th:fragment="navBar">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <a class="navbar-band" href="/"><img src="/images/logo.png"/></a>
@@ -35,11 +35,21 @@
         </div>
 
         <form class="form-inline my-2 my-md-0">
-          <!-- 비로그인 접속 시 -->
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/join">JOIN</a>
+	          <!-- 비로그인 접속 시 -->
+	          <li class="nav-item" sec:authorize="!isAuthenticated()">
+		          <a class="nav-link" th:href="@{/login}">LOGIN</a>
+	          </li>
+            <li class="nav-item" sec:authorize="!isAuthenticated()">
+              <a class="nav-link" th:href="@{/register}">REGISTER</a>
             </li>
+	          <!-- 로그인 접속 시 -->
+	          <li class="nav-item" sec:authorize="isAuthenticated()">
+		          <span class="text-white mr-2 mx-2" sec:authorize="nickname">유저</span>
+	          </li>
+	          <li class="nav-item" sec:authorize="isAuthenticated()">
+		          <a th:href="@{/user/logout}">로그아웃</a>
+	          </li>
           </ul>
         </form>
       </div>

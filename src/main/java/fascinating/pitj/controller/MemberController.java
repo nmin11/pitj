@@ -1,5 +1,6 @@
-package fascinating.pitj.controller.member;
+package fascinating.pitj.controller;
 
+import fascinating.pitj.dto.MemberDto;
 import fascinating.pitj.entity.Member;
 import fascinating.pitj.service.AccountValidator;
 import fascinating.pitj.service.MemberService;
@@ -21,25 +22,35 @@ public class MemberController {
     private final MemberService memberService;
     private final AccountValidator accountValidator;
 
-    @RequestMapping("/join")
-    public String joinForm(Model model) {
-        model.addAttribute("memberForm", new MemberForm());
-        return "members/joinForm";
+    @RequestMapping("/login")
+    public String loginForm(Model model) {
+        model.addAttribute("memberDto", new MemberDto());
+        return "members/login";
+    }
+
+    @RequestMapping("/register")
+    public String registerForm(Model model) {
+        model.addAttribute("memberDto", new MemberDto());
+        return "members/register";
+    }
+
+    @PostMapping("/members/login")
+    public String login() {
+        return "redirect:/";
     }
 
     @PostMapping("/members/new")
-    public String create(@Valid MemberForm form, BindingResult result){
+    public String create(@Valid MemberDto form, BindingResult result){
         accountValidator.validate(form, result);
         System.out.println(result.hasErrors());
         System.out.println(result.getFieldErrorCount());
         if (result.hasErrors()) {
-            return "members/joinForm";
+            return "members/register";
         }
 
         else {
-            Member member = new Member(form.getNickname(), form.getPassword(), form.getEmail(), form.getThemes());
-            memberService.join(member);
-            return "redirect:/";
+            memberService.join(form);
+            return "members/login";
         }
     }
 

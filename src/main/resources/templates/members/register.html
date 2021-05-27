@@ -7,19 +7,11 @@
 	
 	<div class="form-wrap">
 		
-		<div class="movingButton-wrap">
-			<div id="movement"></div>
-			<button type="button" class="movingbtn" onclick="loginForm()">LOG IN</button>
-			<button type="button" class="movingbtn" onclick="registerForm()">REGISTER</button>
+		<div class="col-md-12 text-center">
+			<h3>회원가입</h3>
 		</div>
 		
-		<form id="login" action="/members/login" th:object="${memberForm}" method="post" class="input-group">
-			<input type="text" class="input-field" name="login_nickname" placeholder="닉네임을 입력해주세요" required>
-			<input type="password" class="input-field" name="login_password" placeholder="비밀번호를 입력해주세요" required>
-			<button class="submit">LOG IN</button>
-		</form>
-		
-		<form id="register" th:action="@{/members/new}" th:object="${memberForm}" method="post" class="input-group">
+		<form id="register" th:action="@{/members/new}" th:object="${memberDto}" method="post" class="input-group">
 			<input type="text" th:field="*{nickname}" class="input-field" placeholder="닉네임을 입력해주세요"
 			       th:class="${#fields.hasErrors('nickname')}? 'input-field fieldError' : 'input-field'" required>
 			<p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" class="errors">중복된 닉네임입니다.</p>

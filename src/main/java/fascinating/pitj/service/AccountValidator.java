@@ -1,6 +1,6 @@
 package fascinating.pitj.service;
 
-import fascinating.pitj.controller.member.MemberForm;
+import fascinating.pitj.dto.MemberDto;
 import fascinating.pitj.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,13 +15,13 @@ public class AccountValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return MemberForm.class.equals(clazz);
+        return MemberDto.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        MemberForm memberForm = (MemberForm) target;
-        if (memberRepository.findByNickname(((MemberForm) target).getNickname()) != null) {
+        MemberDto memberDto = (MemberDto) target;
+        if (memberRepository.findByNickname(((MemberDto) target).getNickname()) != null) {
             errors.rejectValue("nickname", "key", "이미 사용중인 닉네임입니다.");
         }
     }
