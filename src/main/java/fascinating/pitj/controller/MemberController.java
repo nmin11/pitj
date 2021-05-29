@@ -1,14 +1,14 @@
 package fascinating.pitj.controller;
 
 import fascinating.pitj.dto.MemberDto;
-import fascinating.pitj.entity.Member;
-import fascinating.pitj.service.AccountValidator;
+import fascinating.pitj.valid.AccountValidator;
 import fascinating.pitj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,9 +22,8 @@ public class MemberController {
     private final MemberService memberService;
     private final AccountValidator accountValidator;
 
-    @RequestMapping("/login")
-    public String loginForm(Model model) {
-        model.addAttribute("memberDto", new MemberDto());
+    @GetMapping("/login")
+    public String loginForm() {
         return "members/login";
     }
 
@@ -34,8 +33,8 @@ public class MemberController {
         return "members/register";
     }
 
-    @PostMapping("/members/login")
-    public String login() {
+    @PostMapping("/members/logout")
+    public String logout() {
         return "redirect:/";
     }
 

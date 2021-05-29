@@ -10,12 +10,4 @@ public class MemberDto {
     private String email;
     private String themes;
 
-    @Builder
-    public MemberDto(String nickname, String password, String email, String themes) {
-        this.nickname = nickname;
-        this.password = password;
-        this.email = email;
-        this.themes = themes;
-    }
-
 }

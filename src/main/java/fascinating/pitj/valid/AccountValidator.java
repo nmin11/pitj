@@ -1,4 +1,4 @@
-package fascinating.pitj.service;
+package fascinating.pitj.valid;
 
 import fascinating.pitj.dto.MemberDto;
 import fascinating.pitj.repository.MemberRepository;

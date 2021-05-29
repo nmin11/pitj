@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -28,31 +27,28 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception
     {
-        // static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상통과 )
+        // static 디렉터리의 하위 파일 목록은 인증 무시
         web.ignoring().antMatchers("/css/**", "/js/**", "/images/**", "/lib/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            // 페이지 권한 설정
-            .antMatchers("/admin/**").hasRole("ADMIN")
-            .antMatchers("/members/myinfo").hasRole("GENERAL")
-            .antMatchers("/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/members/myInfo").hasRole("GENERAL")
+                .antMatchers("/**").permitAll()
             .and() // 로그인 설정
-            .formLogin()
-            .loginPage("/login")
-            .usernameParameter("nickname")
-            .defaultSuccessUrl("/members/login")
-            .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
             .and() // 로그아웃 설정
-            .logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-            .logoutSuccessUrl("/members/logout/result")
-            .invalidateHttpSession(true)
+                .logout()
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
             .and()
             // 403 예외처리 핸들링
-            .exceptionHandling().accessDeniedPage("/members/denied");
+                .exceptionHandling().accessDeniedPage("/members/denied");
     }
 
     @Override
