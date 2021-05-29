@@ -18,6 +18,11 @@
     border-radius: 15px;
 }
 
+#form-name {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 .input-group {
     top: 180px;
     position: absolute;

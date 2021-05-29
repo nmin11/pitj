@@ -7,8 +7,16 @@
 	
 	<div class="form-wrap">
 		
-		<div class="col-md-12 text-center">
+		<div class="col-md-12 text-center" id="form-name">
 			<h3>로그인</h3>
+		</div>
+		
+		<div th:if="${param.error}" class="alert alert-primary" role="alert">
+			닉네임이나 비밀번호가 틀렸습니다.
+		</div>
+		
+		<div th:if="${param.logout}" class="alert alert-primary" role="alert">
+			세션이 만료되어 로그아웃되었습니다.
 		</div>
 		
 		<form id="login" th:action="@{/login}" method="post" class="input-group">
