@@ -2,7 +2,6 @@ package fascinating.pitj.service;
 
 import fascinating.pitj.dto.MemberDto;
 import fascinating.pitj.entity.Member;
-import fascinating.pitj.entity.Role;
 import fascinating.pitj.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

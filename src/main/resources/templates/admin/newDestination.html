@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div th:replace="fragments/navBar :: navBar" />
+<div class="container">
+	<form th:action="@{/destination/new}" th:object="${destinationDto}" method="post">
+		<table name="newDestinationTable">
+			<tr>
+				<th align="center">＊ 여행지 추가 ＊</th>
+			</tr>
+			
+			<tr>
+				<td><input type="radio" th:field="*{theme}" value="romance">낭만 여행
+				<input type="radio" th:field="*{theme}" value="activity">액티비티 여행
+				<input type="radio" th:field="*{theme}" value="landscape">세계 풍경 여행지
+				<input type="radio" th:field="*{theme}" value="alone">나홀로 여행
+				<input type="radio" th:field="*{theme}" value="trekking">트레킹 여행
+				<input type="radio" th:field="*{theme}" value="food">먹거리 여행
+				<input type="radio" th:field="*{theme}" value="luxury">럭셔리 여행</td>
+			</tr>
+			
+			<tr>
+				<td><input type="text" th:field="*{destination_name}" placeholder="여행지 이름" required></td>
+			</tr>
+			
+			<tr>
+				<td><input type="text" th:field="*{location}" placeholder="간단한 주소" required></td>
+			</tr>
+			
+			<tr>
+				<td><input type="number" step="any" th:field="*{lat}" placeholder="위도" required></td>
+			</tr>
+			
+			<tr>
+				<td><input type="number" step="any" th:field="*{lng}" placeholder="경도" required></td>
+			</tr>
+			
+			<tr>
+				<td><input type="text" th:field="*{attraction}" placeholder="즐길 거리" required></td>
+			</tr>
+			
+			<tr>
+				<td><input type="text" th:field="*{tags}" placeholder="태그(여러개 지정시 쉼표로 구분해주세요)"></td>
+			</tr>
+			
+			<tr>
+				<td><textarea cols="50" rows="10" th:field="*{description}" placeholder="여행지에 대한 설명"></textarea></td>
+			</tr>
+			
+			<tr>
+				<td>여행지 이미지<br>
+					1번 <input type="file" accept="image/*"><br>
+					2번 <input type="file" accept="image/*"><br>
+					3번 <input type="file" accept="image/*"><br>
+					4번 <input type="file" accept="image/*"><br>
+					5번 <input type="file" accept="image/*"><br>
+					6번 <input type="file" accept="image/*"><br>
+					7번 <input type="file" accept="image/*"><br>
+					8번 <input type="file" accept="image/*"><br>
+					9번 <input type="file" accept="image/*"><br>
+					10번 <input type="file" accept="image/*">
+				</td>
+			</tr>
+			
+			<tr>
+				<td><input type="submit" value="등록"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+.center-layer {
+    position: inline-block;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    margin-top: 350px;
+}
+
+.center-layer #center-content {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.center-layer .blank {
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#newDestinationTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 1px solid blue;
+    border-radius: 40px;
+}

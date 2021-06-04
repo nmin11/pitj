@@ -1,5 +1,6 @@
 package fascinating.pitj.entity;
 
+import fascinating.pitj.dto.DestinationDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.*;
-import static javax.persistence.FetchType.*;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -22,9 +22,8 @@ public class Destination {
     @Column(name = "destination_id")
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "theme_id")
-    private Theme theme;
+    @NotEmpty
+    private String theme;
 
     @NotEmpty
     private String destination_name;
@@ -41,6 +40,8 @@ public class Destination {
     @NotEmpty
     private String attraction;
 
+    private String tags;
+
     @NotEmpty
     private String description;
 
@@ -48,5 +49,16 @@ public class Destination {
 
     @OneToMany(mappedBy = "destination", cascade = ALL)
     private List<Review> reviews = new ArrayList<>();
+
+    public Destination(DestinationDto destinationDto) {
+        this.theme = destinationDto.getTheme();
+        this.destination_name = destinationDto.getDestination_name();
+        this.location = destinationDto.getLocation();
+        this.lat = destinationDto.getLat();
+        this.lng = destinationDto.getLng();
+        this.attraction = destinationDto.getAttraction();
+        this.tags = destinationDto.getTags();
+        this.description = destinationDto.getDescription();
+    }
 
 }

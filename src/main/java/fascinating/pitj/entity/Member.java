@@ -1,7 +1,6 @@
 package fascinating.pitj.entity;
 
 import fascinating.pitj.dto.MemberDto;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -40,15 +39,7 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 
-    @Builder
-    public Member(String nickname, String password, String email, String themes) {
-        this.authority = GENERAL;
-        this.nickname = nickname;
-        this.password = password;
-        this.email = email;
-        this.themes = themes;
-    }
-
+    //관리자 계정 initDB 전용 생성자
     public Member(String nickname, String password, String email) {
         this.authority = ADMIN;
         this.nickname = nickname;
@@ -56,6 +47,7 @@ public class Member extends BaseEntity {
         this.email = email;
     }
 
+    //회원가입 전용 생성자
     public Member(MemberDto memberDto) {
         this.authority = GENERAL;
         this.nickname = memberDto.getNickname();

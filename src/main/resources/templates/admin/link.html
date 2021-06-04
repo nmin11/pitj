@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div th:replace="fragments/navBar :: navBar" />
+<div class="center-layer">
+	<button type="button" class="btn btn-outline-primary" name="center-content" onClick="location.href='/admin/newDestination'">여행지 추가</button>
+	<button type="button" class="btn btn-outline-primary" name="center-content" href="#">여행지 수정</button>
+	<button type="button" class="btn btn-outline-primary" name="center-content" href="#">여행지 삭제</button>
+	<span class="blank"></span>
+</div>
+</body>
+</html>
