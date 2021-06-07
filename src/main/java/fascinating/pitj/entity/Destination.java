@@ -48,6 +48,9 @@ public class Destination {
     private Double star;
 
     @OneToMany(mappedBy = "destination", cascade = ALL)
+    private List<DestinationPicture> pictures = new ArrayList<>();
+
+    @OneToMany(mappedBy = "destination", cascade = ALL)
     private List<Review> reviews = new ArrayList<>();
 
     public Destination(DestinationDto destinationDto) {

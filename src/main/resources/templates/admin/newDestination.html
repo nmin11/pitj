@@ -4,7 +4,7 @@
 <body>
 <div th:replace="fragments/navBar :: navBar" />
 <div class="container">
-	<form th:action="@{/destination/new}" th:object="${destinationDto}" method="post">
+	<form th:action="@{/destination/new}" th:object="${destinationDto}" method="post" enctype="multipart/form-data">
 		<table name="newDestinationTable">
 			<tr>
 				<th align="center">＊ 여행지 추가 ＊</th>
@@ -41,7 +41,7 @@
 			</tr>
 			
 			<tr>
-				<td><input type="text" th:field="*{tags}" placeholder="태그(여러개 지정시 쉼표로 구분해주세요)"></td>
+				<td><input type="text" th:field="*{tags}" placeholder="태그(쉼표로 구분)"></td>
 			</tr>
 			
 			<tr>
@@ -50,16 +50,7 @@
 			
 			<tr>
 				<td>여행지 이미지<br>
-					1번 <input type="file" accept="image/*"><br>
-					2번 <input type="file" accept="image/*"><br>
-					3번 <input type="file" accept="image/*"><br>
-					4번 <input type="file" accept="image/*"><br>
-					5번 <input type="file" accept="image/*"><br>
-					6번 <input type="file" accept="image/*"><br>
-					7번 <input type="file" accept="image/*"><br>
-					8번 <input type="file" accept="image/*"><br>
-					9번 <input type="file" accept="image/*"><br>
-					10번 <input type="file" accept="image/*">
+					<input type="file" name="image" accept="image/*" multiple="multiple">
 				</td>
 			</tr>
 			
