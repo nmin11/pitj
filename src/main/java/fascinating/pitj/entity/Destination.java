@@ -31,10 +31,8 @@ public class Destination {
     @NotEmpty
     private String location;
 
-    @NotEmpty
     private Double lat;
 
-    @NotEmpty
     private Double lng;
 
     @NotEmpty

@@ -23,12 +23,14 @@ public class DestinationService {
     private final DestinationRepository destinationRepository;
     private final DestinationPictureRepository destinationPictureRepository;
 
+    @Transactional
     public Long clarify(DestinationDto form) {
         Destination destination = new Destination(form);
         destinationRepository.save(destination);
         return destination.getId();
     }
 
+    @Transactional
     public List<DestinationPicture> imageStore(String theme, String destination_name, List<MultipartFile> multipartFiles) throws Exception {
         List<DestinationPicture> fileList = new ArrayList<>();
 
@@ -37,13 +39,15 @@ public class DestinationService {
         }
 
         String absolutePath = new File("").getAbsolutePath() + "\\";
-        String path = "images/" + theme;
+        String path = "src/main/resources/static/images/" + theme;
+        String relatePath = "/images/" + theme;
         File file = new File(path);
 
         if (!file.exists()) {
             file.mkdirs();
         }
 
+        int index = 1;
         for (MultipartFile multipartFile : multipartFiles) {
             if (!multipartFile.isEmpty()) {
                 String contentType = multipartFile.getContentType();
@@ -65,12 +69,15 @@ public class DestinationService {
                 }
 
                 DestinationPicture destinationPicture = new DestinationPicture(multipartFile.getOriginalFilename(),
-                        path + "/" + destination_name, multipartFile.getSize());
+                        relatePath + "/" + destination_name + index, multipartFile.getSize());
                 fileList.add(destinationPicture);
 
-                file = new File(absolutePath + path + "/" + destination_name);
+                file = new File(absolutePath + path + "/" + destination_name + index + originalFileExtension);
                 multipartFile.transferTo(file);
+
+                destinationPictureRepository.save(destinationPicture);
             }
+            index++;
         }
 
         return fileList;
