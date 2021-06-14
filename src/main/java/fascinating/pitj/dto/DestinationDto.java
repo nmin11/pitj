@@ -12,7 +12,6 @@ public class DestinationDto {
     private String location;
     private Double lat;
     private Double lng;
-    private String attraction;
     private String tags;
     private String description;
 

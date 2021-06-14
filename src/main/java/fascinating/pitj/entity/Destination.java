@@ -35,9 +35,6 @@ public class Destination {
 
     private Double lng;
 
-    @NotEmpty
-    private String attraction;
-
     private String tags;
 
     @NotEmpty
@@ -57,7 +54,6 @@ public class Destination {
         this.location = destinationDto.getLocation();
         this.lat = destinationDto.getLat();
         this.lng = destinationDto.getLng();
-        this.attraction = destinationDto.getAttraction();
         this.tags = destinationDto.getTags();
         this.description = destinationDto.getDescription();
     }

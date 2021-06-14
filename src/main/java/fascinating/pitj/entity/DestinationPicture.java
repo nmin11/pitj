@@ -31,7 +31,8 @@ public class DestinationPicture {
 
     private Long file_size;
 
-    public DestinationPicture(String original_file_name, String stored_file_name, Long file_size) {
+    public DestinationPicture(Destination destination, String original_file_name, String stored_file_name, Long file_size) {
+        this.destination = destination;
         this.original_file_name = original_file_name;
         this.stored_file_name = stored_file_name;
         this.file_size = file_size;

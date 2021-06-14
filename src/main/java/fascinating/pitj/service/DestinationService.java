@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityManager;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class DestinationService {
     }
 
     @Transactional
-    public List<DestinationPicture> imageStore(String theme, String destination_name, List<MultipartFile> multipartFiles) throws Exception {
+    public List<DestinationPicture> imageStore(Destination destination, String theme, String destination_name, List<MultipartFile> multipartFiles) throws Exception {
         List<DestinationPicture> fileList = new ArrayList<>();
 
         if (multipartFiles.isEmpty()) {
@@ -68,7 +69,7 @@ public class DestinationService {
                     }
                 }
 
-                DestinationPicture destinationPicture = new DestinationPicture(multipartFile.getOriginalFilename(),
+                DestinationPicture destinationPicture = new DestinationPicture(destination, multipartFile.getOriginalFilename(),
                         relatePath + "/" + destination_name + index, multipartFile.getSize());
                 fileList.add(destinationPicture);
 
