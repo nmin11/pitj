@@ -56,6 +56,7 @@ public class Destination {
         this.lng = destinationDto.getLng();
         this.tags = destinationDto.getTags();
         this.description = destinationDto.getDescription();
+        this.star = 0.0;
     }
 
 }

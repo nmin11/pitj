@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityManager;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,8 @@ public class DestinationService {
         }
 
         String absolutePath = new File("").getAbsolutePath() + "\\";
-        String path = "src/main/resources/static/images/" + theme;
-        String relatePath = "/images/" + theme;
+        String path = "src/main/resources/static/images/" + theme + "/" + destination_name;
+        String relatePath = "/images/" + theme + "/" + destination_name;
         File file = new File(path);
 
         if (!file.exists()) {
