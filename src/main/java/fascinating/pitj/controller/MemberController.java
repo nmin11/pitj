@@ -35,7 +35,6 @@ public class MemberController {
     public String logout() {
         return "redirect:/";
     }
-
     @PostMapping("/members/new")
     public String create(@Valid MemberDto form, BindingResult result){
         accountValidator.validate(form, result);
