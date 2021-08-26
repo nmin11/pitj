@@ -82,4 +82,8 @@ public class DestinationService {
 
         return fileList;
     }
+
+    public List<Destination> findAll() {
+        return destinationRepository.findAll();
+    }
 }
