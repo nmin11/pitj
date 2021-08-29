@@ -3,8 +3,37 @@
 <head th:replace="fragments/header :: header"/>
 <body>
 <div th:replace="fragments/navBar :: navBar" />
-<div th:each="destination : ${destinations}">
-	<h3 th:text="${destination.destination_name}"></h3>
+
+<style>
+	.card {
+		float : left;
+    display : flex;
+    margin-bottom : 25px;
+    margin-left : 5px;
+    margin-right : 5px;
+    text-align : center;
+    justify-content : center;
+    width : 10%;
+    min-width : 200px;
+	}
+	
+	.items {
+		float : left;
+    margin : auto;
+    display : inline;
+    justify-content : center;
+	}
+</style>
+
+<div class="container">
+	<div class="card" th:each="destination : ${destinations}">
+		<div class="items">
+			<img th:src="@{/images/} + ${destination.theme} + @{/} + ${destination.destination_name} + @{/} + ${destination.destination_name} + @{1.jpg}"
+			width="200">
+			<br>
+			<span th:text="${destination.destination_name}"></span>
+		</div>
+	</div>
 </div>
 </body>
 </html>
