@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -86,4 +87,13 @@ public class DestinationService {
     public List<Destination> findAll() {
         return destinationRepository.findAll();
     }
+
+    public Optional<Destination> findById(Long id) {
+        return destinationRepository.findById(id);
+    }
+
+    public List<DestinationPicture> findPictures(Long id) {
+        return destinationPictureRepository.findAllByDestinationId(id);
+    }
+
 }
