@@ -1,0 +1,47 @@
+.title {
+    margin-top: 50px;
+}
+
+.information {
+    display: flex;
+}
+
+.simple_data {
+    width: 45%;
+}
+
+#map {
+    width: 50%;
+    height: 37.5vh;
+    margin-left: auto;
+}
+
+.slide {
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+#pictures {
+    width: 80%;
+    display: inline-block;
+}
+
+.carousel-item {
+    height: 500px;
+}
+
+.isAnonymous {
+    width: 80%;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: auto;
+    border: 1px solid black;
+    border-radius: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

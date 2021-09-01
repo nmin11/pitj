@@ -1,11 +1,94 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/header :: header"/>
-	<body>
-		<div th:replace="fragments/navBar :: navBar" />
-		<div class="container">
-			<h2 th:text="${destination.destination_name}" />
-			<div th:replace="fragments/footer :: footer" />
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div th:replace="fragments/navBar :: navBar" />
+<div class="container">
+	<h1 th:text="${destination.destination_name}" class="title" />
+	<hr width="75%" align="left">
+	
+	<span th:text="${alreadyWrote}" />
+	
+	<div class="information">
+		<div class="simple_data">
+			<p><span>평균 평점 : </span><span th:text="${destination.star}" /></p>
+			<th:block th:switch="${destination.theme}">
+				<p th:case="romance">여행 테마 : 낭만 가득 커플 여행</p>
+				<p th:case="activity">여행 테마 : 체험과 배움의 액티비티 여행</p>
+				<p th:case="landscape">여행 테마 : 세계 풍경 여행지</p>
+				<p th:case="alone">여행 테마 : 사색에 잠기는 나홀로 여행</p>
+				<p th:case="trekking">여행 테마 : 산간오지 트레킹 여행</p>
+				<p th:case="food">여행 테마 : 눈과 입이 즐거운 먹거리 여행</p>
+			</th:block>
+			<p><span>위치 : </span><span th:text="${destination.location}"/></p>
+			<p class="description" th:text="${destination.description}" />
 		</div>
-	</body>
+		
+		<div id="map"></div>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB10GmXlbFwc3WhJsUoqa__WcJyqao0B2k&callback=initMap&region=kr"></script>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			let map;
+			let lat = [[${destination.lat}]];
+			let lng = [[${destination.lng}]];
+			
+			function initMap() {
+				let coordinate = { lat : lat, lng : lng };
+				map = new google.maps.Map(document.getElementById('map'), {
+					zoom : 12,
+					center : coordinate
+				});
+				
+				new google.maps.Marker({
+					position : coordinate,
+					map : map
+				});
+			}
+			/*]]>*/
+		</script>
+	</div>
+	
+	<div class="slide">
+		<div id="pictures" class="carousel slide img-responsive center-block" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="d-block w-100" th:src="${firstPicture.stored_file_name}">
+				</div>
+				<th:block th:each="picture : ${pictures}">
+					<div class="carousel-item">
+						<img class="d-block w-100" th:src="${picture.stored_file_name}">
+					</div>
+				</th:block>
+			</div>
+			<a class="carousel-control-prev" href="#pictures" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			</a>
+			<a class="carousel-control-next" href="#pictures" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			</a>
+			<ul class="carousel-indicators">
+				<li data-target="#pictures" data-slide-to="0" class="active"></li>
+				<th:block th:each="picture, index : ${pictures}">
+					<li data-target="#pictures" th:data-slide-to="${index.index+1}"></li>
+				</th:block>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="isAnonymous" sec:authorize="isAnonymous()">
+		<p>리뷰는 로그인 후에 작성해주세요!</p>
+	</div>
+	
+	<div sec:authorize="isAuthenticated()">
+	
+	</div>
+	
+	<div th:replace="fragments/footer :: footer" />
+</div>
+<script>
+	$('.carousel').carousel({
+		interval: 2000;
+	})
+</script>
+</body>
 </html>

@@ -39,7 +39,7 @@ public class MemberService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException {
-        Optional<Member> userEntityWrapper = memberRepository.findByNicknameForLogin(nickname);
+        Optional<Member> userEntityWrapper = memberRepository.findByNickname(nickname);
         Member userEntity = userEntityWrapper.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -53,4 +53,7 @@ public class MemberService implements UserDetailsService {
         return new User(userEntity.getNickname(), userEntity.getPassword(), authorities);
     }
 
+    public Long findIdByNickname(String username) {
+        return memberRepository.findIdByNickname(username);
+    }
 }

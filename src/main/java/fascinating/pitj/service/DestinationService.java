@@ -92,8 +92,7 @@ public class DestinationService {
         return destinationRepository.findById(id);
     }
 
-    public List<DestinationPicture> findPictures(Long id) {
-        return destinationPictureRepository.findAllByDestinationId(id);
+    public List<DestinationPicture> findPictures(Destination destination) {
+        return destinationPictureRepository.findAllByDestination(destination);
     }
-
 }

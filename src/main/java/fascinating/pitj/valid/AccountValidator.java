@@ -20,7 +20,7 @@ public class AccountValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        if (memberRepository.findByNickname(((MemberDto) target).getNickname()) != null) {
+        if (memberRepository.findByNickname(((MemberDto) target).getNickname()).isPresent()) {
             errors.rejectValue("nickname", "key", "이미 사용중인 닉네임입니다.");
         }
     }

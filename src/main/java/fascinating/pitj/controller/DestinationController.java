@@ -2,21 +2,28 @@ package fascinating.pitj.controller;
 
 import fascinating.pitj.entity.Destination;
 import fascinating.pitj.entity.DestinationPicture;
+import fascinating.pitj.entity.Member;
 import fascinating.pitj.service.DestinationService;
+import fascinating.pitj.service.MemberService;
+import fascinating.pitj.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
 public class DestinationController {
 
     private final DestinationService destinationService;
+    private final MemberService memberService;
+    private final ReviewService reviewService;
 
     @GetMapping("/all")
     public String allDestination(Model model) {
@@ -26,11 +33,20 @@ public class DestinationController {
     }
 
     @GetMapping("/destination")
-    public String getDestination(Model model, @RequestParam("id") Long id) {
+    public String getDestination(Model model, @RequestParam("id") Long id, @AuthenticationPrincipal User user) {
         Destination destination = destinationService.findById(id).get();
-        List<DestinationPicture> destinationPictures = destinationService.findPictures(destination.getId());
+        List<DestinationPicture> destinationPictures = destinationService.findPictures(destination);
+        List<DestinationPicture> pictures = new ArrayList<>();
+        for (int i = 1; i < destinationPictures.size(); i++) {
+            pictures.add(destinationPictures.get(i));
+        }
+        Long member_id = memberService.findIdByNickname(user.getUsername());
+        Boolean alreadyWrote = reviewService.alreadyWrote(id, member_id);
+
         model.addAttribute("destination", destination);
-        model.addAttribute("pictures", destinationPictures);
+        model.addAttribute("firstPicture", destinationPictures.get(0));
+        model.addAttribute("pictures", pictures);
+        model.addAttribute("alreadyWrote", alreadyWrote);
         return "/destination";
     }
 
