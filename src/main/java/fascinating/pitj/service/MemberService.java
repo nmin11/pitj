@@ -53,7 +53,4 @@ public class MemberService implements UserDetailsService {
         return new User(userEntity.getNickname(), userEntity.getPassword(), authorities);
     }
 
-    public Long findIdByNickname(String username) {
-        return memberRepository.findIdByNickname(username);
-    }
 }

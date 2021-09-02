@@ -40,13 +40,10 @@ public class DestinationController {
         for (int i = 1; i < destinationPictures.size(); i++) {
             pictures.add(destinationPictures.get(i));
         }
-        Long member_id = memberService.findIdByNickname(user.getUsername());
-        Boolean alreadyWrote = reviewService.alreadyWrote(id, member_id);
 
         model.addAttribute("destination", destination);
         model.addAttribute("firstPicture", destinationPictures.get(0));
         model.addAttribute("pictures", pictures);
-        model.addAttribute("alreadyWrote", alreadyWrote);
         return "/destination";
     }
 
