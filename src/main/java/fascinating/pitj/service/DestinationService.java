@@ -88,8 +88,8 @@ public class DestinationService {
         return destinationRepository.findAll();
     }
 
-    public Optional<Destination> findById(Long id) {
-        return destinationRepository.findById(id);
+    public Destination findById(Long id) {
+        return destinationRepository.findById(id).get();
     }
 
     public List<DestinationPicture> findPictures(Destination destination) {

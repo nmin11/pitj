@@ -1,8 +1,8 @@
 package fascinating.pitj.controller;
 
+import fascinating.pitj.dto.ReviewFormDto;
 import fascinating.pitj.entity.Destination;
 import fascinating.pitj.entity.DestinationPicture;
-import fascinating.pitj.entity.Member;
 import fascinating.pitj.service.DestinationService;
 import fascinating.pitj.service.MemberService;
 import fascinating.pitj.service.ReviewService;
@@ -33,14 +33,15 @@ public class DestinationController {
     }
 
     @GetMapping("/destination")
-    public String getDestination(Model model, @RequestParam("id") Long id, @AuthenticationPrincipal User user) {
-        Destination destination = destinationService.findById(id).get();
+    public String getDestination(Model model, @RequestParam("id") Long id) {
+        Destination destination = destinationService.findById(id);
         List<DestinationPicture> destinationPictures = destinationService.findPictures(destination);
         List<DestinationPicture> pictures = new ArrayList<>();
         for (int i = 1; i < destinationPictures.size(); i++) {
             pictures.add(destinationPictures.get(i));
         }
 
+        model.addAttribute("formDto", new ReviewFormDto());
         model.addAttribute("destination", destination);
         model.addAttribute("firstPicture", destinationPictures.get(0));
         model.addAttribute("pictures", pictures);
