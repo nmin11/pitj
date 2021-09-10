@@ -175,3 +175,12 @@ input.star:checked ~ .review-text {
 }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
+
+.more-review-button {
+    margin-top: 50px;
+    display: flex;
+}
+
+.more-review-button > a {
+    margin-left: auto;
+}
